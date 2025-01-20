@@ -1,41 +1,5 @@
 # P2C.net-documentation
 
-## English below
-### Tài liệu API: Tạo Hóa Đơn
-
-#### Endpoint
-**POST** `/api/invoices`
-
-#### Headers
-- **api-key**: Chuỗi API key của merchant (Bắt buộc).
-
-#### Request Body
-Request body cần được gửi dưới định dạng JSON.
-
-| Trường           | Kiểu dữ liệu  | Bắt buộc | Mô tả                                                                 |
-|-------------------|---------------|----------|-----------------------------------------------------------------------|
-| **amount**        | Số            | Có       | Số tiền của hóa đơn (đơn vị: USDT).                                  |
-| **redirectUrl**   | Chuỗi         | Không    | URL để điều hướng sau khi hóa đơn hoàn thành.                        |
-| **callback**      | Chuỗi         | Không    | Tự động gọi nếu seller đã cài đặt `webhookUrl` ở merchant.           |
-| **referenceId**   | Chuỗi         | Không    | ID đơn hàng của seller, seller tự thêm nếu có.                       |
-| **description**   | Chuỗi         | Không    | Mô tả hóa đơn.                                                       |
-| **metaData**      | JSON Object   | Không    | Đối tượng JSON chứa thông tin bổ sung (nếu có).                      |
-
-##### Ví dụ Request
-```json
-{
-  "amount": 100.00,
-  "redirectUrl": "https://seller-website.com/success",
-  "callback": "https://seller-website.com/webhook",
-  "referenceId": "ORDER123456",
-  "description": "Thanh toán đơn hàng #123456",
-  "metaData": {
-    "customerId": "CUST7890",
-    "orderNotes": "Giao hàng nhanh"
-  }
-}
-```
-
 ## API Documentation: Create Invoice
 
 ### Endpoint
@@ -70,32 +34,31 @@ The request body should be sent in JSON format.
   }
 }
 ```
-## Tài liệu API: Xem danh sách hóa đơn
+## API Documentation: View Invoice List
 
 ### Endpoint
 - URL: **/api/invoices**
-- Phương thức: **GET**
+- Method: **GET**
 
 ### Headers
-- **api-key**: Chuỗi API key của merchant (Bắt buộc).
+- **api-key**: API key string for the merchant (Required).
 
 ### Query Parameters
 
-| Trường            | Kiểu dữ liệu  | Bắt buộc | Mô tả                                                                                             |
+| Field             | Data Type     | Required | Description                                                                                       |
 |-------------------|---------------|----------|---------------------------------------------------------------------------------------------------|
-| **from**          | string        | Không    |Ngày bắt đầu (theo định dạng ISO 8601, ví dụ: 2022-06-10T03:55:54.208+00:00)                       |
-| **to**            | string        | Không    |Ngày kết thúc (theo định dạng ISO 8601).                                                           |
-| **page**          | string        | Không    |Số trang mặc định là 1                                                                             |
-| **take**          | string        | Không    |Số lượng trên mỗi trang mặc là 20                                                                  |
-| **search**        | string        | Không    |Tìm kiếm hóa đơn theo mã code                                                                      |
-| **statuses**      | string        | Không    |Trạng thái của hóa đơn (danh sách các trạng thái có thể dùng sẽ được cung cấp bởi nhà cung cấp API)|
-
+| **from**          | string        | No       |Start date (in ISO 8601 format, e.g., 2022-06-10T03:55:54.208+00:00).                              |
+| **to**            | string        | No       |End date (in ISO 8601 format).                                                                     |
+| **page**          | string        | No       |Page number, default is 1.                                                                         |
+| **take**          | string        | No       |Number of records per page, default is 20.                                                         |
+| **search**        | string        | No       |Search invoices by code.                                                                           |
+| **statuses**      | string        | No       |Status of the invoices (the list of available statuses will be provided by the API provider).      |
 
 ### Response
-- HTTP Status Code: 200 (Created) nếu thành công.
-- HTTP Status Code: 400 (Bad Request) nếu thông tin không hợp lệ.
+- HTTP Status Code: 200 (Created) if successful.
+- HTTP Status Code: 400 (Bad Request) if the input is invalid.
 
-#### Ví dụ Request
+#### Example Request
 ```
 curl -X 'GET' \
   'https://staging.api.pay2c.net/api/invoices?page=1&take=20' \
@@ -103,7 +66,7 @@ curl -X 'GET' \
   -H 'api-key: "your_api_key_here" '
 ```
 
-#### Ví dụ Response
+#### Example Response
 ```
 {
   "timestamp": "2025-01-17T10:05:21.209Z",
@@ -193,24 +156,23 @@ curl -X 'GET' \
   }
 }
 ```
-## Tài liệu API: Xem chi tiết hóa đơn
+## API Documentation: View Invoice Details
 
 ### Endpoint
 - URL: **/api/invoices/{id}**
-- Phương thức: **GET**
+- Method: **GET**
 
 ### Headers
-- **api-key**: Chuỗi API key của merchant (Bắt buộc).
+- **api-key**: API key string for the merchant (Required).
 
 ### Path
-- **id**: id của hóa đơn do hệ thống trả về(Bắt buộc)
-
+- **id**: The invoice id returned by the system (Required).
 
 ### Response
-- HTTP Status Code: 200 (Created) nếu thành công.
-- HTTP Status Code: 400 (Bad Request) nếu thông tin không hợp lệ.
+- HTTP Status Code: 200 (Created) if successful.
+- HTTP Status Code: 400 (Bad Request) if the input is invalid.
 
-#### Ví dụ Request
+#### Example Request
 ```
 curl -X 'GET' \
   'https://staging.api.pay2c.net/api/invoices/34' \
@@ -218,7 +180,7 @@ curl -X 'GET' \
   -H 'api-key: lRhkrpKAqFAPqqivANkiiVW1bEw9Oy'
 ```
 
-#### Ví dụ Response
+#### Example Response
 ```
 {
   "timestamp": "2025-01-17T08:03:48.163Z",
@@ -254,3 +216,146 @@ curl -X 'GET' \
   "message": "OK"
 }
 ```
+
+## Webhooks
+
+A webhook URL can now be provided in Merchant Setting for certain endpoints which will notify you of any change in the underlying object status. This URL will allow you to receive notifications whenever there is a change in the status of the related object.
+
+With the webhook functionality, you no longer need to schedule tasks to periodically poll endpoints or allocate resources to monitor object statuses. Simply include a ```webhook_url``` in the API payload, and the Pay2c system will send a POST request to your server whenever there is a status update. Please ensure that the webhook URL is configured with the HTTPS protocol; otherwise, the webhook will not be triggered.
+
+Make sure your endpoint is configured to respond to Pay2c webhooks with standard HTTP status codes.
+For example, return a 2xx status code to confirm that the POST request was successfully received by your server.
+
+### I. Invoice Status specific events
+| Event                  | Description                                                                                   |
+|------------------------|-----------------------------------------------------------------------------------------------|
+| **invoice.completed**  | Triggers when an invoice is successfully completed, and the payment is received from the user |
+| **invoice.failed**     | Triggers when an invoice is marked as failed because the payment received from the user is 0  |
+
+#### 1. Invoice.completed
+- Method: **POST**
+- Example data:
+```
+{
+	event: "INVOICE_COMPLETED",
+	sign: "hash signature",
+	timestamp: "2023-03-16T04:14:04.515+00:00",
+	data: {
+		id: 1,
+		referenceId: "ref12101",
+		code: "I2025011067N",
+		status: "PAID",
+		amount: 10,
+		serviceFee: 1,
+		processingFee: 1,
+		receivedAmount: 10,
+		description: "Your description here",
+		createdAt: "2023-03-16T03:44:04.515+00:00",
+		paidAt: "2023-03-16T04:14:04.515+00:00",
+		failedAt: null,
+		metaData: {}
+	},
+}
+```
+
+#### 2. Invoice.failed
+- Method: **POST**
+- Example data:
+```
+{
+	event: "INVOICE_FAILED",
+	sign: "hash signature",
+	timestamp: "2023-03-16T04:14:04.515+00:00",
+	data: {
+		id: 1,
+		referenceId: "ref12101",
+		code: "I2025011067N",
+		status: "FAILED",
+		amount: 10,
+		serviceFee: 1,
+		processingFee: 1,
+		receivedAmount: 10,
+		description: "Your description here",
+		createdAt: "2023-03-16T03:44:04.515+00:00",
+		paidAt: null,
+		failedAt: "2023-03-16T04:14:04.515+00:00",
+		metaData: {}
+	},
+}
+```
+
+### II. Create a `sign`
+Here is the guide to connecting to an API using a signature generated by the HMAC-SHA256 algorithm, which consists of two parts: signatureKey and payloadString. Below is how to create and verify the signature in Node.js.
+
+#### 1. Create the signature `sign` in the request:
+To create the signature for the API, you need two elements:
+
+signatureKey: This is obtained from the Merchant's information (provided by the Merchant).
+payloadString: This is created from `timestamp` and `data.id` in the callback, with the formula:
+`payloadString = timestamp + "." + data.id`
+
+#### 2. Use the HMAC-SHA256 algorithm to generate the signature
+```
+import * as crypto from 'crypto';
+
+export class SignatureService {
+  // Create a signature from the payloadString and secretKey
+  static createSignature(secretKey: string, payloadString: string): string {
+    return crypto
+      .createHmac('sha256', secretKey)  // Use HMAC-SHA256
+      .update(payloadString)            // Update with data
+      .digest('hex');                   // Return the result as a hex string
+  }
+
+  // Verify the client signature with the server signature
+  static verifySignature(
+    secretKey: string,
+    payloadString: string,
+    clientSignature: string,
+  ): boolean {
+    // Generate the server signature from payloadString and secretKey
+    const serverSignature = crypto
+      .createHmac('sha256', secretKey)
+      .update(payloadString)
+      .digest('hex');
+
+    // Compare the client signature with the server signature
+    return serverSignature === clientSignature;
+  }
+}
+```
+
+#### 3. Example of using the API
+##### a. Create the signature in the request
+Suppose you have timestamp and data.id in the callback, you will create payloadString and then use SignatureService.createSignature to generate the signature:
+```
+const secretKey = 'your_merchant_secret_key'; // From Merchant
+const timestamp = '1234567890';  // Timestamp from the system
+const data = { id: 'some_id' }; // Data from the callback
+
+// Create the payloadString
+const payloadString = `${timestamp}.${data.id}`;
+
+// Generate the signature
+const signature = SignatureService.createSignature(secretKey, payloadString);
+
+// Send the API request with the signature in the body or header
+``` 
+
+##### b. Verify the client signature
+When receiving the signature from the client, you will retrieve payloadString (as created above) and use SignatureService.verifySignature to verify the validity of the signature.
+```
+// Client sends the signature in the request
+const clientSignature = 'client_provided_signature';  // Signature from the client
+
+// Verify the signature
+const isValid = SignatureService.verifySignature(secretKey, payloadString, clientSignature);
+
+if (isValid) {
+  // Signature is valid, continue processing
+} else {
+  // Signature is invalid, return an error
+}
+```
+#### 4. Connect to the API
+When sending a request to the API, you will include the generated signature in the body or header of the request so that the API can validate its authenticity.
