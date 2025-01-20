@@ -22,7 +22,7 @@ The request body should be sent in JSON format.
 #### Example Request
 ```
 curl -X 'POST' \
-  'https://staging.api.pay2c.net/api/invoices' \
+  'https://api.pay2c.net/api/invoices' \
   -H 'accept: */*' \
   -H 'api-key: aAJpohT0yD7kQOh2SIqbgZS588TaS5' \
   -H 'Content-Type: application/json' \
