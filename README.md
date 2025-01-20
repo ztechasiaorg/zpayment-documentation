@@ -63,7 +63,7 @@ curl -X 'POST' \
 - HTTP Status Code: 500 (Internal server error) if there is an error from the server.
 
 #### Example Request
-```json
+```
 curl -X 'GET' \
   'https://api.pay2c.net/api/invoices?page=1&take=20' \
   -H 'accept: */*' \
