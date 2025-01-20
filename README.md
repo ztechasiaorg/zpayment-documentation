@@ -20,24 +20,26 @@ The request body should be sent in JSON format.
 | **metaData**      | JSON Object  | No       | A JSON object containing additional information (if any).                |
 
 #### Example Request
-```
-curl -X 'POST' \
-  'https://api.pay2c.net/api/invoices' \
-  -H 'accept: */*' \
-  -H 'api-key: aAJpohT0yD7kQOh2SIqbgZS588TaS5' \
-  -H 'Content-Type: application/json' \
-  -d '{
+```bash
+curl -X POST "https://api.example.com/api/invoices" \
+-H "Content-Type: application/json" \
+-H "api-key: <API_KEY>" \
+-d '{
   "amount": 100.00,
-  "redirectUrl": "https://seller-website.com/success",
-  "referenceId": "ORDER123456",
-  "description": "Payment for order #123456",
+  "redirectUrl": "https://your-website.com/success",
+  "callback": "https://your-website.com/webhook",
+  "referenceId": "ORDER12345",
+  "description": "Payment for order #12345",
   "metaData": {
-    "customerId": "CUST7890",
+    "customerId": "CUST67890",
     "orderNotes": "Fast delivery"
   }
-}
-'
+}'
 ```
+#### Guide to Replacing Placeholders
+- <_API_KEY_>: Replace with the API key provided when you register as a merchant.
+- <_URL_>: Replace with your webhook or redirect URL.
+
 ## API Documentation: View Invoice List
 
 ### Endpoint
@@ -65,101 +67,11 @@ curl -X 'POST' \
 #### Example Request
 ```
 curl -X 'GET' \
-  'https://api.pay2c.net/api/invoices?page=1&take=20' \
+  'https://api.example.com/api/invoices?page=1&take=20' \
   -H 'accept: */*' \
-  -H 'api-key: "your_api_key_here" '
+  -H 'api-key: <API_KEY> '
 ```
 
-#### Example Response
-```
-{
-  "timestamp": "2025-01-17T10:05:21.209Z",
-  "status": 200,
-  "data": [
-    {
-      "id": 34,
-      "createdAt": "2025-01-17T08:02:55.818Z",
-      "updatedAt": "2025-01-17T08:32:49.199Z",
-      "code": "I20250117V46",
-      "amount": 1,
-      "receivedAmount": 0,
-      "serviceFee": 0,
-      "processingFee": 0,
-      "netAmount": 0,
-      "walletAddress": "37u54aPXRzBLugzKyP3mDeSy4Vi4DKPgtYDwVb9QuUUw",
-      "referenceId": "string",
-      "description": "string",
-      "metaData": {},
-      "expiredAt": "2025-01-17T08:32:55.816Z",
-      "paidAt": null,
-      "failedAt": "2025-01-17T08:32:49.202Z",
-      "status": "FAILED",
-      "merchant": {
-        "id": 6,
-        "name": "Chespatra",
-        "webhookUrl": ""
-      }
-    },
-    {
-      "id": 31,
-      "createdAt": "2025-01-17T07:02:24.592Z",
-      "updatedAt": "2025-01-17T07:06:35.276Z",
-      "code": "I20250117GJU",
-      "amount": 0.000045,
-      "receivedAmount": 0.000045,
-      "serviceFee": 0.000005,
-      "processingFee": 0.000005,
-      "netAmount": 0.000036,
-      "walletAddress": "77y3LA28iPom6H3TwUZcPaK97LajL8rVCFnfXUURDKCN",
-      "referenceId": "",
-      "description": "",
-      "metaData": null,
-      "expiredAt": "2025-01-17T07:32:24.598Z",
-      "paidAt": "2025-01-17T07:06:35.313Z",
-      "failedAt": null,
-      "status": "PAID",
-      "merchant": {
-        "id": 6,
-        "name": "Chespatra",
-        "webhookUrl": ""
-      }
-    },
-    {
-      "id": 27,
-      "createdAt": "2025-01-17T05:00:44.881Z",
-      "updatedAt": "2025-01-17T05:01:56.981Z",
-      "code": "I20250117E7I",
-      "amount": 0.5,
-      "receivedAmount": 0.500009,
-      "serviceFee": 0.050001,
-      "processingFee": 0.050001,
-      "netAmount": 0.400007,
-      "walletAddress": "5MR1LFRdjw8Vm1z4ben1FtWbbnovuinE13An3PtvVR9G",
-      "referenceId": "",
-      "description": "",
-      "metaData": null,
-      "expiredAt": "2025-01-17T05:30:44.900Z",
-      "paidAt": "2025-01-17T05:01:56.990Z",
-      "failedAt": null,
-      "status": "PAID",
-      "merchant": {
-        "id": 6,
-        "name": "Chespatra",
-        "webhookUrl": ""
-      }
-    }
-  ],
-  "message": "OK",
-  "meta": {
-    "page": 1,
-    "take": 20,
-    "totalCount": 3,
-    "pageCount": 1,
-    "hasPreviousPage": false,
-    "hasNextPage": false
-  }
-}
-```
 ## API Documentation: View Invoice Details
 
 ### Endpoint
@@ -180,47 +92,11 @@ curl -X 'GET' \
 #### Example Request
 ```
 curl -X 'GET' \
-  'https://api.pay2c.net/api/invoices/34' \ 
+  'https://api.example.com/api/invoices/34' \ 
   -H 'accept: */*' \
-  -H 'api-key: lRhkrpKAqFAPqqivANkiiVW1bEw9Oy'
+  -H 'api-key: <API_KEY>'
 ```
 
-#### Example Response
-```
-{
-  "timestamp": "2025-01-17T08:03:48.163Z",
-  "status": 200,
-  "data": {
-    "id": 34,
-    "createdAt": "2025-01-17T08:02:55.818Z",
-    "updatedAt": "2025-01-17T08:02:55.850Z",
-    "code": "I20250117V46",
-    "amount": 1,
-    "receivedAmount": 0,
-    "serviceFee": 0,
-    "processingFee": 0,
-    "netAmount": 0,
-    "walletAddress": "37u54aPXRzBLugzKyP3mDeSy4Vi4DKPgtYDwVb9QuUUw",
-    "referenceId": "string",
-    "description": "string",
-    "metaData": {},
-    "expiredAt": "2025-01-17T08:32:55.816Z",
-    "paidAt": null,
-    "failedAt": null,
-    "status": "PENDING",
-    "paymentUrl": "https://staging.app.pay2c.net/checkout/Vm0weE1GbFhTWGxWV0doWFltczFVMWxyVm5kVmJGcHlWV3RLVUZWVU1Eaz0=",
-    "redirectUrl": "string",
-    "withdrawStatus": "NULL",
-    "renewTimes": 0,
-    "merchant": {
-      "id": 6,
-      "name": "Chespatra",
-      "webhookUrl": ""
-    }
-  },
-  "message": "OK"
-}
-```
 
 ## API Documentation: Webhooks
 
