@@ -330,7 +330,7 @@ export class SignatureService {
 }
 ```
 
-#### 3. Example of verify callback event
+#### 3. Example of verifying the callback event
 ##### a. Create the signature in the request
 Suppose you have timestamp and data.id in the callback, you will create payloadString and then use SignatureService.createSignature to generate the signature:
 ```
