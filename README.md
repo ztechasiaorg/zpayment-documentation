@@ -217,7 +217,7 @@ curl -X 'GET' \
 }
 ```
 
-## Webhooks
+## API Documentation: Webhooks
 
 A webhook URL can now be provided in Merchant Setting for certain endpoints which will notify you of any change in the underlying object status. This URL will allow you to receive notifications whenever there is a change in the status of the related object.
 
