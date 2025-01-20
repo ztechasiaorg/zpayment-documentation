@@ -35,6 +35,8 @@ curl -X 'POST' \
     "customerId": "CUST7890",
     "orderNotes": "Fast delivery"
   }
+}
+'
 ```
 ## API Documentation: View Invoice List
 
