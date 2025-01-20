@@ -20,7 +20,7 @@ The request body should be sent in JSON format.
 | **metaData**      | JSON Object  | No       | A JSON object containing additional information (if any).                |
 
 #### Example Request
-```json
+```
 curl -X 'POST' \
   'https://staging.api.pay2c.net/api/invoices' \
   -H 'accept: */*' \
@@ -178,7 +178,7 @@ curl -X 'GET' \
 
 
 #### Example Request
-```json
+```
 curl -X 'GET' \
   'https://api.pay2c.net/api/invoices/34' \ 
   -H 'accept: */*' \
