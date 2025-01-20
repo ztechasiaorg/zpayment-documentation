@@ -231,7 +231,7 @@ With the webhook functionality, you no longer need to schedule tasks to periodic
 Make sure your endpoint is configured to respond to Pay2c webhooks with standard HTTP status codes.
 For example, return a 2xx status code to confirm that the POST request was successfully received by your server.
 
-### I. Invoice Status specific events
+### I. Invoice status specific events
 | Event                  | Description                                                                                   |
 |------------------------|-----------------------------------------------------------------------------------------------|
 | **INVOICE_COMPLETED**  | Triggers when an invoice is successfully completed, and the payment is received from the user |
