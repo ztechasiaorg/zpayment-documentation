@@ -20,6 +20,12 @@ The request body should be sent in JSON format.
 | **description**   | String       | No       | Description of the invoice.                                              |
 | **metaData**      | JSON Object  | No       | A JSON object containing additional information (if any).                |
 
+### Response
+- HTTP Status Code: 200 (OK) if successful.
+- HTTP Status Code: 400 (Bad Request) if the input is invalid.
+- HTTP Status Code: 429 (Too Many Requests) if the rate limit of 5 requests per IP/user/path/second is exceeded. The block duration is 10 seconds
+- HTTP Status Code: 500 (Internal server error) if there is an error from the server.
+
 #### Example Request
 ```bash
 curl -X POST "https://api.example.com/api/invoices" \
@@ -63,6 +69,7 @@ curl -X POST "https://api.example.com/api/invoices" \
 ### Response
 - HTTP Status Code: 200 (OK) if successful.
 - HTTP Status Code: 400 (Bad Request) if the input is invalid.
+- HTTP Status Code: 429 (Too Many Requests) if the rate limit of 5 requests per IP/user/path/second is exceeded. The block duration is 10 seconds
 - HTTP Status Code: 500 (Internal server error) if there is an error from the server.
 
 #### Example Request
@@ -87,8 +94,8 @@ curl -X 'GET' \
 ### Response
 - HTTP Status Code: 200 (OK) if successful.
 - HTTP Status Code: 400 (Bad Request) if the input is invalid.
+- HTTP Status Code: 429 (Too Many Requests) if the rate limit of 5 requests per IP/user/path/second is exceeded. The block duration is 10 seconds
 - HTTP Status Code: 500 (Internal server error) if there is an error from the server.
-
 
 #### Example Request
 ```
@@ -97,7 +104,6 @@ curl -X 'GET' \
   -H 'accept: */*' \
   -H 'api-key: <API_KEY>'
 ```
-
 
 ## API Documentation: Webhooks
 
