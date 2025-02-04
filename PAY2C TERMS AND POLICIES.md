@@ -46,8 +46,8 @@ Welcome to Pay2C, an electronic payment gateway service. By using our services, 
 ## 12. Governing Law & Jurisdiction
 - These Terms and Policies are governed by applicable laws in the jurisdiction where Pay2C operates.
 - Any legal disputes shall be resolved in the courts of the relevant jurisdiction.
-## 13. Contact 
-- Information For inquiries or support, please contact Pay2C via support@pay2c.net
+## 13. Contact Information 
+- For inquiries or support, please contact Pay2C via support@pay2c.net
 - By using Pay2C, you acknowledge that you have read, understood, and agreed to these Terms and Policies.
 
 
