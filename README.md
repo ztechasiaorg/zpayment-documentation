@@ -183,7 +183,7 @@ To create the signature for the API, you need two elements:
 `payloadString = timestamp + "." + id`
 
 #### 2. Use the HMAC-SHA256 algorithm to generate the signature
-```javascript
+```typescript
 import * as crypto from 'crypto';
 
 export class SignatureService {
