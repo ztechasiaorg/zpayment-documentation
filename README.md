@@ -183,7 +183,7 @@ To create the signature for the API, you need two elements:
 `payloadString = timestamp + "." + id`
 
 #### 2. Use the HMAC-SHA256 algorithm to generate the signature
-```
+```javascript
 import * as crypto from 'crypto';
 
 export class SignatureService {
@@ -216,7 +216,7 @@ export class SignatureService {
 #### 3. Example of verifying the callback event
 ##### a. Create the signature in the request
 Suppose you have timestamp and data.id in the callback, you will create payloadString and then use SignatureService.createSignature to generate the signature:
-```
+```javascript
 const webhookBody = {
   event: "INVOICE_FAILED",
   sign: "hash signature",
