@@ -249,7 +249,7 @@ const signature = SignatureService.createSignature(secretKey, payloadString);
 
 ##### b. Verify the webhook signature
 When receiving the signature from the webhook, you will retrieve payloadString (as created above) and use SignatureService.verifySignature to verify the validity of the signature.
-```
+```typescript
 // Webhook sends the signature in the request
 const webhookSignature = 'webhook_provided_signature';  // Signature from the webhook
 
